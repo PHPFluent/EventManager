@@ -1,0 +1,22 @@
+{
+    "name": "phpfluent/eventmanager",
+    "type": "library",
+    "homepage": "http://github.com/PHPFluent/EventManager",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kinn Coelho Julião",
+            "email": "kinncj@php.net"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "PHPFluent\\EventManager": "src/"
+        }
+    },
+    "require-dev": {
+        "phpmd/phpmd" : "~1.5",
+        "phpunit/phpunit": "~4.1",
+        "squizlabs/php_codesniffer": "~1.5"
+    }
+}
