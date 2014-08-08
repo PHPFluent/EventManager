@@ -22,7 +22,7 @@ class Manager
 
     protected function checkEvent($id)
     {
-        if ( ! isset($this->eventList[$id])) {
+        if (!isset($this->eventList[$id])) {
             $this->eventList[$id] = new Event($id);
         }
     }

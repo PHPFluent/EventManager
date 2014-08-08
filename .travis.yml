@@ -12,5 +12,4 @@ before_script:
 
 script:
   - make phpcs
-  - make phpmd
   - make phpunit
