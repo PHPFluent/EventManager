@@ -16,6 +16,26 @@ composer require phpfluent/eventmanager
 
 ## Usage
 
+### _Fluent_ API
+
+```php
+$eventManager = new Manager();
+$eventManager->updated = function() { // Add listener to the event "updated"
+    echo 'Updated' . PHP_EOL;
+);
+$eventManager->updated(); // Dispatch event "updated"
+```
+
+```php
+$eventManager = new Manager();
+$eventManager->created = function($user) { // Add listener to the event "created"
+    echo "Created [{$user->id}]{$user->name}\n";
+);
+$eventManager->created($user); // Dispatch event "created"
+```
+
+### _Non-Fluent_ API
+
 ```php
 $eventManager = new Manager();
 

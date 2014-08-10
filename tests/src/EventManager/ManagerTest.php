@@ -54,4 +54,15 @@ class ManagerTest extends PHPUnit_Framework_TestCase
             array("my.event.1", function () { echo "b";}, "b"),
         );
     }
+
+    public function testShouldDispatchEventsWithMagicMethods()
+    {
+        $callable = function ($name) {
+            echo "Hello, {$name}!";
+        };
+        $this->expectOutputString('Hello, John Doe!');
+
+        $this->manager->eventName = $callable;
+        $this->manager->eventName('John Doe');
+    }
 }
