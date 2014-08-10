@@ -18,26 +18,16 @@ composer require phpfluent/eventmanager
 
 ```php
 $eventManager = new Manager();
-
-$eventManager->addListener(
-    "updated",
-    function() {
-        echo "updated\n";
-    }
+$eventManager->updated = function() { // Add listener to the event "updated"
+    echo 'Updated' . PHP_EOL;
 );
-
-$eventManager->dispatchEvent("updated");
+$eventManager->updated(); // Dispatch event "updated"
 ```
 
 ```php
 $eventManager = new Manager();
-
-$eventManager->addListener(
-    "created",
-    function($user) {
-        echo "created [{$user->id}]{$user->name}\n";
-    }
+$eventManager->created = function($user) { // Add listener to the event "created"
+    echo "Created [{$user->id}]{$user->name}\n";
 );
-
-$eventManager->dispatchEvent("created", $user);
+$eventManager->created($user); // Dispatch event "created"
 ```
