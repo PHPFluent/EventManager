@@ -50,9 +50,8 @@ class ManagerTest extends PHPUnit_Framework_TestCase
     public function eventProvider()
     {
         return array(
-            array("my.event.1", function(){ echo "a";}, "a"),
-            array("my.event.1", function(){ echo "b";}, "b"),
+            array("my.event.1", function () { echo "a";}, "a"),
+            array("my.event.1", function () { echo "b";}, "b"),
         );
     }
 }
-

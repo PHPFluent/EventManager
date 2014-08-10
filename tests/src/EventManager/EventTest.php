@@ -26,9 +26,8 @@ class EventTest extends PHPUnit_Framework_TestCase
     public function notifierListProvider()
     {
         return array(
-                array('my.event.1', function(){}, null),
-                array('my.event.2', function(){ echo "a";}, "a"),
+                array('my.event.1', function () {}, null),
+                array('my.event.2', function () { echo "a";}, "a"),
         );
     }
 }
-

@@ -20,11 +20,11 @@ composer require phpfluent/eventmanager
 $eventManager = new Manager();
 
 $eventManager->addListener(
-        "updated",
-        function()
-        {
-            echo "updated\n";
-        });
+    "updated",
+    function() {
+        echo "updated\n";
+    }
+);
 
 $eventManager->dispatchEvent("updated");
 ```
@@ -33,11 +33,11 @@ $eventManager->dispatchEvent("updated");
 $eventManager = new Manager();
 
 $eventManager->addListener(
-        "created",
-        function($user)
-        {
-            echo "created [{$user->id}]{$user->name}\n";
-        });
+    "created",
+    function($user) {
+        echo "created [{$user->id}]{$user->name}\n";
+    }
+);
 
 $eventManager->dispatchEvent("created", $user);
 ```
