@@ -41,3 +41,16 @@ $eventManager->addListener(
 
 $eventManager->dispatchEvent("created", $user);
 ```
+
+```php
+$eventManager = new Manager();
+
+$eventManager->addListener(
+        "showParams",
+        function()
+        {
+            echo implode(', ', func_get_args()) . "\n";
+        });
+
+$eventManager->dispatchEvent("showParam", "1", "2", "3");
+```

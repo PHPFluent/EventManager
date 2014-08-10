@@ -17,7 +17,12 @@ class Manager
     {
         $this->checkEvent($id);
 
-        $this->eventList[$id]->notify($data);
+        $parameters = array_slice(func_get_args(), 1);
+
+        call_user_func_array(
+            array($this->eventList[$id], 'notify'),
+            $parameters
+        );
     }
 
     protected function checkEvent($id)
