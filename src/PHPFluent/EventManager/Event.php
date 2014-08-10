@@ -22,7 +22,7 @@ class Event implements Eventable
     public function notify($data = null)
     {
         foreach ($this->callableList as $callable) {
-            $callable($data);
+            call_user_func_array($callable, func_get_args());
         }
     }
 }
