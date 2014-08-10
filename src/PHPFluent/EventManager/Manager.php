@@ -26,4 +26,16 @@ class Manager
             $this->eventList[$id] = new Event($id);
         }
     }
+
+    public function __set($property, $value)
+    {
+        $this->addListener($property, $value);
+    }
+
+    public function __call($methodName, array $arguments = array())
+    {
+        foreach ($arguments as $argument) {
+            $this->dispatchEvent($methodName, $argument);
+        }
+    }
 }
