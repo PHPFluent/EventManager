@@ -2,28 +2,35 @@
 
 namespace PHPFluent\EventManager;
 
-use SplObjectStorage;
-
 class Event
 {
     protected $name;
     protected $listenerList;
+    protected $propagationStopped = false;
 
     public function __construct($name)
     {
         $this->name = $name;
-        $this->listenerList = new SplObjectStorage();
+        $this->listenerList = new ListenerCollection();
     }
 
-    public function attach(callable $listener)
+    public function getName()
     {
-        $this->listenerList[$listener] = $listener;
+        return $this->name;
     }
 
-    public function notify($data = null)
+    public function getListeners()
     {
-        foreach ($this->listenerList as $listener) {
-            $listener($data);
-        }
+        return $this->listenerList;
+    }
+
+    public function stopPropagation()
+    {
+        $this->propagationStopped = true;
+    }
+
+    public function isPropagationStopped()
+    {
+        return $this->propagationStopped;
     }
 }

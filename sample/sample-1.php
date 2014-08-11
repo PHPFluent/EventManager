@@ -14,4 +14,4 @@ someFunction($eventManager);
 
 echo file_get_contents("sample.txt").PHP_EOL;
 
-$eventManager->dispatchEvent("remove.file.sample.txt", (new DateTime)->format("m/d/Y"));
+$eventManager->dispatchEvent("remove.file.sample.txt", array((new DateTime)->format("m/d/Y")));

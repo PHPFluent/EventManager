@@ -28,8 +28,8 @@ $eventManager->updated(); // Dispatch event "updated"
 
 ```php
 $eventManager = new Manager();
-$eventManager->created = function($user) { // Add listener to the event "created"
-    echo "Created [{$user->id}]{$user->name}\n";
+$eventManager->created = function(array $data) { // Add listener to the event "created"
+    echo 'Created ' . json_encode($data) . PHP_EOL;
 );
 $eventManager->created($user); // Dispatch event "created"
 ```
@@ -54,8 +54,8 @@ $eventManager = new Manager();
 
 $eventManager->addListener(
     "created",
-    function($user) {
-        echo "created [{$user->id}]{$user->name}\n";
+    function(array $data) {
+        echo 'Created ' . json_encode($data) . PHP_EOL;
     }
 );
 

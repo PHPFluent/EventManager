@@ -4,35 +4,45 @@ namespace PHPFluent\EventManager;
 
 class Manager
 {
-    protected $eventList = array();
+    protected $events = array();
 
-    protected function event($eventName)
+    public function getEvent($eventName)
     {
-        if (! isset($this->eventList[$eventName])) {
-            $this->eventList[$eventName] = new Event($eventName);
+        if (! isset($this->events[$eventName])) {
+            $this->events[$eventName] = new Event($eventName);
         }
 
-        return $this->eventList[$eventName];
+        return $this->events[$eventName];
     }
 
-    public function addListener($eventName, callable $callable)
+    public function addEventListener($eventName, $listener)
     {
-        $this->event($eventName)->attach($callable);
+        if (is_callable($listener)) {
+            $listener = new ListenerCallback($listener);
+        }
+
+        $this->getEvent($eventName)->getListeners()->add($listener);
     }
 
-    public function dispatchEvent($eventName, $data = null)
+    public function dispatchEvent($eventName, array $params = array())
     {
-        $this->event($eventName)->notify($data);
+        $event = $this->getEvent($eventName);
+        foreach ($event->getListeners() as $listener) {
+            if ($event->isPropagationStopped()) {
+                break;
+            }
+            $listener->execute($event, $params);
+        }
     }
 
-    public function __set($property, $value)
+    public function __set($eventName, $listener)
     {
-        $this->addListener($property, $value);
+        $this->addEventListener($eventName, $listener);
     }
 
     public function __call($eventName, array $arguments = array())
     {
-        $argument = null;
+        $argument = array();
         if (! empty($arguments)) {
             $argument = array_shift($arguments);
         }

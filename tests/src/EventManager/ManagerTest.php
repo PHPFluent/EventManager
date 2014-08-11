@@ -1,68 +1,83 @@
 <?php
-use PHPFluent\EventManager\Manager;
+
+namespace PHPFluent\EventManager;
+
 /**
- * Manager test case.
+ * @covers PHPFluent\EventManager\Manager
  */
-class ManagerTest extends PHPUnit_Framework_TestCase
+class ManagerTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     *
-     * @var Manager
-     */
-    private $manager;
-
-    /**
-     * Prepares the environment before running a test.
-     */
-    public function setUp()
+    public function testShouldTriggerEvent()
     {
-        parent::setUp();
+        $manager = new Manager();
+        $event = $manager->getEvent('foo');
 
-        $this->manager = new Manager;
+        $params = array(1, 2, 3);
+        $listener = $this->getMock('PHPFluent\EventManager\Listener');
+        $listener
+            ->expects($this->once())
+            ->method('execute')
+            ->with($event, $params);
+        $manager->addEventListener($event->getName(), $listener);
+        $manager->dispatchEvent($event->getName(), $params);
     }
 
-    /**
-     * Cleans up the environment after running a test.
-     */
-    protected function tearDown()
+    public function testShouldNotTriggerEventWhenPropagationIsStopped()
     {
-        $this->manager = null;
+        $manager = new Manager();
+        $event = $manager->getEvent('foo');
 
-        parent::tearDown();
+        $params = array(1, 2, 3);
+        $listener = $this->getMock('PHPFluent\EventManager\Listener');
+        $listener
+            ->expects($this->never())
+            ->method('execute')
+            ->with($event, $params);
+        $manager->addEventListener('foo', function (Event $event) {
+            $event->stopPropagation();
+        });
+        $manager->addEventListener($event->getName(), $listener);
+        $manager->dispatchEvent($event->getName(), $params);
     }
 
-    /**
-     * @dataProvider eventProvider
-     */
-    public function testDispatchEvent($id, $callable, $expected)
+    public function testShouldDispatchEventsWhenListenerIsACallback()
     {
-        ob_start();
-
-        $this->manager->addListener($id, $callable);
-        $this->manager->dispatchEvent($id);
-
-        $result = ob_get_clean();
-
-        $this->assertEquals($expected, $result);
-    }
-
-    public function eventProvider()
-    {
-        return array(
-            array("my.event.1", function () { echo "a";}, "a"),
-            array("my.event.1", function () { echo "b";}, "b"),
-        );
-    }
-
-    public function testShouldDispatchEventsWithMagicMethods()
-    {
-        $callable = function ($name) {
-            echo "Hello, {$name}!";
+        $callback = function (array $params) {
+            echo "Hello, {$params['name']}!";
         };
         $this->expectOutputString('Hello, John Doe!');
 
-        $this->manager->eventName = $callable;
-        $this->manager->eventName('John Doe');
+        $manager = new Manager();
+        $manager->addEventListener('foo', $callback);
+        $manager->dispatchEvent('foo', array('name' => 'John Doe'));
+    }
+
+    public function testShouldHandleEventUsingMagicMethods()
+    {
+        $callback1 = function () {
+            echo 'Hello';
+        };
+        $callback2 = function () {
+            echo ' guys!';
+        };
+        $this->expectOutputString('Hello guys!');
+
+        $manager = new Manager();
+        $manager->foo = $callback1;
+        $manager->foo = $callback2;
+        $manager->foo();
+    }
+
+    public function testShouldDispatchEventWithArgumentUsingMagicMethods()
+    {
+        $callback = function (array $params) {
+            echo json_encode($params);
+        };
+        $this->expectOutputString('[1,2]');
+
+        $manager = new Manager();
+        $manager->foo = $callback;
+        $manager->foo(array(1, 2));
     }
 }

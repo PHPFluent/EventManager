@@ -1,33 +1,39 @@
 <?php
-use PHPFluent\EventManager\Event;
+
+namespace PHPFluent\EventManager;
 
 /**
- * EventTest test case.
+ * @covers PHPFluent\EventManager\Event
  */
-class EventTest extends PHPUnit_Framework_TestCase
+class EventTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider notifierListProvider
-     */
-    public function testShouldNotify($id, $callable, $expected)
+    public function testShouldDefineNameOnConstructor()
     {
-        $event = new Event($id);
+        $name = 'someName';
+        $event = new Event($name);
 
-        $event->attach($callable);
-        ob_start();
-
-        $event->notify();
-
-        $result = ob_get_clean();
-
-        $this->assertEquals($expected, $result);
+        $this->assertSame($name, $event->getName());
     }
 
-    public function notifierListProvider()
+    public function testShouldReturnListenerCollection()
     {
-        return array(
-                array('my.event.1', function () {}, null),
-                array('my.event.2', function () { echo "a";}, "a"),
-        );
+        $event = new Event('whatever');
+
+        $this->assertInstanceOf('PHPFluent\EventManager\ListenerCollection', $event->getListeners());
+    }
+
+    public function testShouldNotStoppedPropagationByDefault()
+    {
+        $event = new Event('whatever');
+
+        $this->assertFalse($event->isPropagationStopped());
+    }
+
+    public function testShouldBeAbleToStoppedPropagation()
+    {
+        $event = new Event('whatever');
+        $event->stopPropagation();
+
+        $this->assertTrue($event->isPropagationStopped());
     }
 }
