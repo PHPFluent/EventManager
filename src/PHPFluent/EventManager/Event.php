@@ -2,27 +2,28 @@
 
 namespace PHPFluent\EventManager;
 
-class Event implements Eventable
+use SplObjectStorage;
+
+class Event
 {
-    protected $id;
+    protected $name;
+    protected $listenerList;
 
-    protected $callableList;
-
-    public function __construct($id)
+    public function __construct($name)
     {
-        $this->id           = $id;
-        $this->callableList = new \SplObjectStorage;
+        $this->name = $name;
+        $this->listenerList = new SplObjectStorage();
     }
 
-    public function attach(callable $callable)
+    public function attach(callable $listener)
     {
-        $this->callableList[$callable] = $callable;
+        $this->listenerList[$listener] = $listener;
     }
 
     public function notify($data = null)
     {
-        foreach ($this->callableList as $callable) {
-            $callable($data);
+        foreach ($this->listenerList as $listener) {
+            $listener($data);
         }
     }
 }

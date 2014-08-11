@@ -6,25 +6,23 @@ class Manager
 {
     protected $eventList = array();
 
-    public function addListener($id, callable $callable)
+    protected function event($eventName)
     {
-        $this->checkEvent($id);
-
-        $this->eventList[$id]->attach($callable);
-    }
-
-    public function dispatchEvent($id, $data = null)
-    {
-        $this->checkEvent($id);
-
-        $this->eventList[$id]->notify($data);
-    }
-
-    protected function checkEvent($id)
-    {
-        if (!isset($this->eventList[$id])) {
-            $this->eventList[$id] = new Event($id);
+        if (! isset($this->eventList[$eventName])) {
+            $this->eventList[$eventName] = new Event($eventName);
         }
+
+        return $this->eventList[$eventName];
+    }
+
+    public function addListener($eventName, callable $callable)
+    {
+        $this->event($eventName)->attach($callable);
+    }
+
+    public function dispatchEvent($eventName, $data = null)
+    {
+        $this->event($eventName)->notify($data);
     }
 
     public function __set($property, $value)
@@ -32,14 +30,13 @@ class Manager
         $this->addListener($property, $value);
     }
 
-    public function __call($methodName, array $arguments = array())
+    public function __call($eventName, array $arguments = array())
     {
-        $callback = array($this, 'dispatchEvent');
-        $params = array_merge(
-            array($methodName),
-            $arguments
-        );
+        $argument = null;
+        if (! empty($arguments)) {
+            $argument = array_shift($arguments);
+        }
 
-        return call_user_func_array($callback, $params);
+        $this->dispatchEvent($eventName, $argument);
     }
 }
