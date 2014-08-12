@@ -24,14 +24,14 @@ class Manager
         $this->getEvent($eventName)->getListeners()->add($listener);
     }
 
-    public function dispatchEvent($eventName, array $params = array())
+    public function dispatchEvent($eventName, array $context = array())
     {
         $event = $this->getEvent($eventName);
         foreach ($event->getListeners() as $listener) {
             if ($event->isPropagationStopped()) {
                 break;
             }
-            $listener->execute($event, $params);
+            $listener->execute($event, $context);
         }
     }
 

@@ -14,9 +14,9 @@ class ListenerCallback implements Listener
         $this->reflection = new ReflectionFunction($callback);
     }
 
-    public function execute(Event $event, array $params = array())
+    public function execute(Event $event, array $context = array())
     {
-        $arguments = array($event, $params);
+        $arguments = array($event, $context);
         $parameters = $this->reflection->getParameters();
         $firstParameter = array_shift($parameters);
         if ($firstParameter instanceof ReflectionParameter
