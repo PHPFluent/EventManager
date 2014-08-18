@@ -9,7 +9,7 @@ class EventTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldDefineNameOnConstructor()
     {
-        $name = 'someName';
+        $name  = 'someName';
         $event = new Event($name);
 
         $this->assertSame($name, $event->getName());
@@ -32,6 +32,7 @@ class EventTest extends \PHPUnit_Framework_TestCase
     public function testShouldBeAbleToStoppedPropagation()
     {
         $event = new Event('whatever');
+
         $event->stopPropagation();
 
         $this->assertTrue($event->isPropagationStopped());
