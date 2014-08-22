@@ -28,7 +28,7 @@ class Manager
      * Add an Event Listener
      *
      * @param string $eventName
-     * @param callable $listener
+     * @param callable|Listener $listener
      */
     public function addEventListener($eventName, $listener)
     {
