@@ -7,11 +7,15 @@
         {
             "name": "Kinn Coelho Julião",
             "email": "kinncj@php.net"
+        },
+        {
+            "name": "Henrique Moody",
+            "email": "henriquemoody@gmail.com"
         }
     ],
     "autoload": {
-        "psr-0": {
-            "PHPFluent\\EventManager": "src/"
+        "psr-4": {
+            "PHPFluent\\EventManager\\": "src/PHPFluent/EventManager"
         }
     },
     "require-dev": {
