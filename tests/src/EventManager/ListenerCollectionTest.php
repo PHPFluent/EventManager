@@ -11,7 +11,7 @@ class ListenerCollectionTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldAddListenerToCollection()
     {
-        $listener 	= $this->getMock('PHPFluent\EventManager\Listener');
+        $listener   = $this->getMock('PHPFluent\EventManager\Listener');
         $collection = new ListenerCollection();
 
         $collection->add($listener);

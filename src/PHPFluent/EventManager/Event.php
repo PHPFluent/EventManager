@@ -26,7 +26,7 @@ class Event
      */
     public function __construct($name)
     {
-        $this->name 		= $name;
+        $this->name         = $name;
         $this->listenerList = new ListenerCollection();
     }
 
