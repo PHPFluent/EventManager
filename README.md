@@ -1,9 +1,10 @@
 # PHPFluent\EventManager
-[![Build Status](https://secure.travis-ci.org/PHPFluent/EventManager.png)](http://travis-ci.org/PHPFluent/EventManager)
-[![Total Downloads](https://poser.pugx.org/phpfluent/eventmanager/downloads.png)](https://packagist.org/packages/phpfluent/eventmanager)
-[![License](https://poser.pugx.org/phpfluent/eventmanager/license.png)](https://packagist.org/packages/phpfluent/eventmanager)
-[![Latest Stable Version](https://poser.pugx.org/phpfluent/eventmanager/v/stable.png)](https://packagist.org/packages/phpfluent/eventmanager)
-[![Latest Unstable Version](https://poser.pugx.org/phpfluent/eventmanager/v/unstable.png)](https://packagist.org/packages/phpfluent/eventmanager)
+[![Build Status](https://img.shields.io/travis/PHPFluent/EventManager.svg?style=flat-square)](http://travis-ci.org/PHPFluent/EventManager)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/PHPFluent/EventManager.svg?style=flat-square)](https://scrutinizer-ci.com/g/PHPFluent/EventManager)
+[![Code Quality](https://img.shields.io/scrutinizer/g/PHPFluent/EventManager.svg?style=flat-square)](https://scrutinizer-ci.com/g/PHPFluent/EventManager)
+[![Latest Stable Version](https://img.shields.io/packagist/v/phpfluent/eventmanager.svg?style=flat-square)](https://packagist.org/packages/phpfluent/eventmanager)
+[![Total Downloads](https://img.shields.io/packagist/dt/phpfluent/eventmanager.svg?style=flat-square)](https://packagist.org/packages/phpfluent/eventmanager)
+[![License](https://img.shields.io/packagist/l/phpfluent/eventmanager.svg?style=flat-square)](https://packagist.org/packages/phpfluent/eventmanager)
 
 ## Installation
 
