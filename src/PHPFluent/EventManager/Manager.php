@@ -12,7 +12,7 @@ class Manager
     /**
      * Get an Event by name
      *
-     * @param string $eventName
+     * @param  string                        $eventName
      * @return \PHPFluent\EventManager\Event
      */
     public function getEvent($eventName)
@@ -27,7 +27,7 @@ class Manager
     /**
      * Add an Event Listener
      *
-     * @param string $eventName
+     * @param string            $eventName
      * @param callable|Listener $listener
      */
     public function addEventListener($eventName, $listener)
@@ -45,7 +45,7 @@ class Manager
      * Dispatch an Event
      *
      * @param string $eventName
-     * @param array $context
+     * @param array  $context
      */
     public function dispatchEvent($eventName, array $context = array())
     {
