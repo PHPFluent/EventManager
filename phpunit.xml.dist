@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit colors="true">
+<phpunit>
     <testsuites>
-        <testsuite name="EventManager tests">
+        <testsuite>
             <directory>tests</directory>
         </testsuite>
     </testsuites>

@@ -1,5 +1,4 @@
-vendor/
-.buildpath
-.project
-.settings/
-composer.lock
+/composer.lock
+/Makefile
+/phpunit.xml
+/vendor/

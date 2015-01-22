@@ -7,7 +7,7 @@ interface Listener
     /**
      *
      * @param \PHPFluent\EventManager\Event $event
-     * @param array $context
+     * @param array                         $context
      */
     public function execute(Event $event, array $context = array());
 }
