@@ -1,8 +1,11 @@
 <?php
 
-namespace PHPFluent\EventManager;
+namespace PHPFluent\EventManager\Listener;
 
-class ListenerCallback implements Listener
+use PHPFluent\EventManager\Event;
+use PHPFluent\EventManager\Listener;
+
+class Callback implements Listener
 {
     /**
      * @var \ReflectionFunction

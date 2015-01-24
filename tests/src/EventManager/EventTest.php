@@ -19,7 +19,7 @@ class EventTest extends \PHPUnit_Framework_TestCase
     {
         $event = new Event('whatever');
 
-        $this->assertInstanceOf('PHPFluent\EventManager\ListenerCollection', $event->getListeners());
+        $this->assertInstanceOf('PHPFluent\EventManager\Listener\Collection', $event->getListeners());
     }
 
     public function testShouldNotStoppedPropagationByDefault()
