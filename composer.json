@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "arara/process": "~1.9.1"
+        "php": ">=5.4.0"
     },
     "autoload": {
         "psr-4": {
@@ -23,8 +22,13 @@
         }
     },
     "require-dev": {
+        "arara/process": "~1.9.1",
         "phpmd/phpmd" : "~1.5",
         "phpunit/phpunit": "~4.1",
         "squizlabs/php_codesniffer": "~1.5"
+    },
+    "suggest": {
+        "arara/process": "Allow asynchronous Process listener.",
+        "ext-pthreads": "Needed to use in PHPFluent\\EventManager\\Listener\\PThread."
     }
 }
