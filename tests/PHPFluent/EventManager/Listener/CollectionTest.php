@@ -5,7 +5,7 @@ namespace PHPFluent\EventManager\Listener;
 use ReflectionFunction;
 
 /**
- * @covers PHPFluent\EventManager\ListenerCollection
+ * @covers PHPFluent\EventManager\Listener\Collection
  */
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {

@@ -6,7 +6,7 @@ use ReflectionFunction;
 use PHPFluent\EventManager\Event;
 
 /**
- * @covers PHPFluent\EventManager\ListenerCallback
+ * @covers PHPFluent\EventManager\Listener\Callback
  */
 class CallbackTest extends \PHPUnit_Framework_TestCase
 {

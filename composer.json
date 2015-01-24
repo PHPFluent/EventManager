@@ -13,6 +13,9 @@
             "email": "henriquemoody@gmail.com"
         }
     ],
+    "require": {
+        "arara/process": "~1.9.1"
+    },
     "autoload": {
         "psr-4": {
             "PHPFluent\\EventManager\\": "src/PHPFluent/EventManager"
