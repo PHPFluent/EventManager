@@ -22,14 +22,14 @@ class Process extends Asynchronous
      */
     public function __construct($action)
     {
-        if (! (is_callable($action) || $action instanceof Action)) {
-            throw new \UnexpectedValueException(
-                '$action must be callable or instance of Arara\Process\Action\Action'
-            );
-        }
-
         if (is_callable($action)) {
             $action = new ProcessCallback($action);
+        }
+
+        if (! $action instanceof Action) {
+            throw new InvalidException(
+                'Action must be callable or instance of Arara\Process\Action\Action'
+            );
         }
 
         $this->action = $action;

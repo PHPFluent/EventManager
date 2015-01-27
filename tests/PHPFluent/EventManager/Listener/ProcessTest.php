@@ -27,7 +27,8 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \UnexpectedValueException
+     * @expectedException \PHPFluent\EventManager\Exception
+     * @expectedExceptionMessage Action must be callable or instance of Arara\Process\Action\Action
      */
     public function testContructorWithNonCallableOrActionInstance()
     {

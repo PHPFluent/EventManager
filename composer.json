@@ -22,6 +22,7 @@
         }
     },
     "require-dev": {
+        "ext-pthreads": "*",
         "arara/process": "~1.9.1",
         "phpmd/phpmd" : "~1.5",
         "phpunit/phpunit": "~4.1",

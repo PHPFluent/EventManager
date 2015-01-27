@@ -2,9 +2,12 @@
 
 namespace PHPFluent\EventManager\Listener;
 
-use PHPFluent\EventMAnager\Listener;
+use PHPFluent\EventManager\Listener;
+use SplObjectStorage;
+use IteratorAggregate;
+use Countable;
 
-class Collection implements \IteratorAggregate, \Countable
+class Collection implements IteratorAggregate, Countable
 {
     /**
      * @var \SplObjectStorage
@@ -13,7 +16,7 @@ class Collection implements \IteratorAggregate, \Countable
 
     public function __construct()
     {
-        $this->listeners = new \SplObjectStorage();
+        $this->listeners = new SplObjectStorage();
     }
 
     /**

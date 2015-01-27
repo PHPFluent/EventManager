@@ -9,14 +9,6 @@ use PHPFluent\EventManager\Event;
 */
 class PThreadTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        if (! extension_loaded('pthreads')) {
-            $this->markTestSkipped('The pthreads extension is not available.');
-        }
-    }
-
     public function testConstructorShouldDefineThread()
     {
         $thread   = $this->getMock('\Thread');
@@ -41,16 +33,5 @@ class PThreadTest extends \PHPUnit_Framework_TestCase
 
         $listener = new PThread($thread);
         $this->assertInstanceOf('\Thread', $listener->execute(new Event('')));
-    }
-}
-
-if (extension_loaded('pthreads')) {
-
-    class WrapThread extends \Thread
-    {
-        public function run()
-        {
-            //doing something...
-        }
     }
 }
