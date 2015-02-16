@@ -40,7 +40,7 @@ $eventManager->created($user); // Dispatch event "created"
 ```php
 $eventManager = new Manager();
 
-$eventManager->addListener(
+$eventManager->addEventListener(
     "updated",
     function() {
         echo "updated\n";
@@ -53,7 +53,7 @@ $eventManager->dispatchEvent("updated");
 ```php
 $eventManager = new Manager();
 
-$eventManager->addListener(
+$eventManager->addEventListener(
     "created",
     function(array $data) {
         echo 'Created ' . json_encode($data) . PHP_EOL;
@@ -62,3 +62,19 @@ $eventManager->addListener(
 
 $eventManager->dispatchEvent("created", $user);
 ```
+
+### Predefined Listeners:
+
+* **Callback:** uses a [`callable`](http://php.net/manual/en/language.types.callable.php) as listener (default as the sample above).
+* **Process:** work with [Arara\Process](https://github.com/arara/process) to create asynchronous listeners.
+* **PThread:** uses the [pthreads extension](http://pthreads.org/) as asynchronous listener.
+
+#### [Samples](sample)
+
+* [Adding Events](sample/events.php)
+* [Dispatch Events](sample/sample-1.php)
+* [Events with Arguments](sample/sample-2.php)
+* [Stop Event Propagation](sample/sample-3.php)
+* [Using the Listener Interface](sample/sample-4.php)
+* [Listener With Arara\Process](sample/sample-5.php)
+* [Listener With pThreads](sample/sample-6.php)

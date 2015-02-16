@@ -1,8 +1,13 @@
 <?php
 
-namespace PHPFluent\EventManager;
+namespace PHPFluent\EventManager\Listener;
 
-class ListenerCollection implements \IteratorAggregate, \Countable
+use PHPFluent\EventManager\Listener;
+use SplObjectStorage;
+use IteratorAggregate;
+use Countable;
+
+class Collection implements IteratorAggregate, Countable
 {
     /**
      * @var \SplObjectStorage
@@ -11,12 +16,12 @@ class ListenerCollection implements \IteratorAggregate, \Countable
 
     public function __construct()
     {
-        $this->listeners = new \SplObjectStorage();
+        $this->listeners = new SplObjectStorage();
     }
 
     /**
      * (non-PHPdoc)
-     * @see Countable::count()
+     * @see \Countable::count()
      */
     public function count()
     {
@@ -25,7 +30,7 @@ class ListenerCollection implements \IteratorAggregate, \Countable
 
     /**
      * (non-PHPdoc)
-     * @see IteratorAggregate::getIterator()
+     * @see \IteratorAggregate::getIterator()
      */
     public function getIterator()
     {

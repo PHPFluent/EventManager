@@ -1,19 +1,20 @@
 <?php
 
-namespace PHPFluent\EventManager;
+namespace PHPFluent\EventManager\Listener;
 
 use ReflectionFunction;
+use PHPFluent\EventManager\Event;
 
 /**
- * @covers PHPFluent\EventManager\ListenerCallback
+ * @covers PHPFluent\EventManager\Listener\Callback
  */
-class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
+class CallbackTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldDefineCallbackOnConstructor()
     {
         $callback   = function () {};
         $reflection = new ReflectionFunction($callback);
-        $listener   = new ListenerCallback($callback);
+        $listener   = new Callback($callback);
 
         $this->assertAttributeEquals($reflection, 'reflection', $listener);
     }
@@ -25,7 +26,7 @@ class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
         };
 
         $reflection     = new ReflectionFunction($callback);
-        $listener       = new ListenerCallback($callback);
+        $listener       = new Callback($callback);
         $event          = new Event('name');
         $result         = $listener->execute($event);
         $expectedResult = 'Whatever';
@@ -40,10 +41,10 @@ class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
         };
 
         $reflection     = new ReflectionFunction($callback);
-        $listener       = new ListenerCallback($callback);
+        $listener       = new Callback($callback);
         $event          = new Event('name');
         $result         = $listener->execute($event, range(1, 3));
-        $expectedResult = __NAMESPACE__ . '\\Event';
+        $expectedResult = 'PHPFluent\EventManager\Event';
 
         $this->assertEquals($expectedResult, $result);
     }
@@ -55,7 +56,7 @@ class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
         };
 
         $reflection     = new ReflectionFunction($callback);
-        $listener       = new ListenerCallback($callback);
+        $listener       = new Callback($callback);
         $event          = new Event('name');
         $result         = $listener->execute($event, range(1, 3));
         $expectedResult = '[{},[1,2,3]]';
@@ -70,7 +71,7 @@ class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
         };
 
         $reflection     = new ReflectionFunction($callback);
-        $listener       = new ListenerCallback($callback);
+        $listener       = new Callback($callback);
         $event          = new Event('name');
         $result         = $listener->execute($event, range(1, 3));
         $expectedResult = '[1,2,3]';
@@ -78,4 +79,3 @@ class ListenerCallbackTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $result);
     }
 }
-

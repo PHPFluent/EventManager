@@ -16,6 +16,7 @@ cache:
     - vendor
 
 before_script:
+  - pecl install pthreads
   - composer install --dev --no-interaction --prefer-source
 
 script:

@@ -33,7 +33,7 @@ class Manager
     public function addEventListener($eventName, $listener)
     {
         if (is_callable($listener)) {
-            $listener = new ListenerCallback($listener);
+            $listener = new Listener\Callback($listener);
         }
 
         $this->getEvent($eventName)
